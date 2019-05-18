@@ -38,7 +38,7 @@
     <property name="configLocation" value="classpath:hibernate.cfg.xml" />
 </bean>
 
-<bean id="postalDao" class="com.sush.first.dao.UserDAOImpl">
+<bean id="userDao" class="com.sush.first.dao.UserDAOImpl">
     <constructor-arg>
         <ref bean="sessionFactory" />
     </constructor-arg>

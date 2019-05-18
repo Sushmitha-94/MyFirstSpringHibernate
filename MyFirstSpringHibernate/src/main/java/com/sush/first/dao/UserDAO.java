@@ -4,9 +4,10 @@ import com.sush.first.model.User;
 
 public interface UserDAO {
 	
-	public User userLogin(User user);
-	public User updatePassword(User user, String newPassword);
-	public User updateEmail(User user,String newEmail);
-	public int deleteUser(User user);
-	public User setUpUser(User user);
+	//public User updatePassword(User user, String newPassword);
+	//public User updateEmail(User user,String newEmail);
+	public void deleteUser(User user);
+	public User insertUser(User user);
+	public User getUserDetails(String username);
+	public User updateUser(User user);
 }

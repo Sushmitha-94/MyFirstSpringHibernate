@@ -9,12 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sush.first.dao.UserDAO;
 import com.sush.first.model.User;
+import com.sush.first.service.UserService;
 
 @Controller
 public class controllerClass {
 
 	@Autowired
-	private UserDAO userDAO;
+	private UserService userService;
 	
 	@RequestMapping("/")
 	public ModelAndView firstPage() {
@@ -24,10 +25,7 @@ public class controllerClass {
 	
 	@RequestMapping(value="/loginValidate",method=RequestMethod.POST)
 	public ModelAndView loggedInPage(@RequestParam("username") String username, @RequestParam("password") String password) {
-		User user=new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		user = userDAO.userLogin(user);
+		User user = userService.userLogin(username,password);
 		ModelAndView modelAndView;
 		if(user!=null)
 		{
@@ -45,7 +43,7 @@ public class controllerClass {
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setEmail(email);
-		user = userDAO.setUpUser(user);
+		user = userService.setUpUser(user);
 		ModelAndView modelAndView;
 		modelAndView=new ModelAndView("firstPage");
 		modelAndView.addObject("user", user);
@@ -57,11 +55,11 @@ public class controllerClass {
 		ModelAndView modelAndView;
 		if(user.getPassword().equals(oldPassword))
 		{
-			user = userDAO.updatePassword(user,newPassword);
-			modelAndView=new ModelAndView("password");
+			user = userService.updatePassword(user,newPassword);
+			modelAndView = new ModelAndView("password");
 		}
 		else
-			modelAndView=new ModelAndView("loginFailedPage");
+			modelAndView = new ModelAndView("loginFailedPage");
 		return modelAndView;
 	}
 	
@@ -70,7 +68,7 @@ public class controllerClass {
 		ModelAndView modelAndView;
 		if(user.getPassword().equals(password))
 		{
-			user = userDAO.updateEmail(user,email);
+			user = userService.updateEmail(user,email);
 			modelAndView=new ModelAndView("email");
 		}
 		else

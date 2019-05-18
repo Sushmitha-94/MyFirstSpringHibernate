@@ -4,10 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.sush.first.model">
     <class name="User" table="user">
-        <id name="user_id" column="user_id">
-            <generator class="native"/>
-        </id>
-        <property name="username" column="username" />
+        <id name="username" column="username" />
         <property name="password" column="password" />
         <property name="email" column="email" />
     </class> 

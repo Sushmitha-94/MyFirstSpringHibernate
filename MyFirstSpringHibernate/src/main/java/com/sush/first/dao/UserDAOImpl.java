@@ -16,29 +16,14 @@ public class UserDAOImpl implements UserDAO {
 	 public UserDAOImpl(SessionFactory sessionFactory) {
 		 this.sessionFactory=sessionFactory;
 	 }
-	
-	public User userLogin(User user) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		String queryString = "from User where username=:username and password=:password";
-		Query q = session.createQuery(queryString);
-		q.setParameter("username", user.getUsername());
-		q.setParameter("password", user.getPassword());
-		List<User> users = q.list();
-		tx.commit();
-		session.close();
-		if(users.size()>0)
-			return users.get(0);
-		else 
-			return null;
-	}
+/*	
 
 	public User updatePassword(User user,String newPassword) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		String queryString = "from User where user_id=:user_id";
+		String queryString = "from User where username=:username";
 		Query q = session.createQuery(queryString);
-		q.setParameter("user_id", user.getUser_id());
+		q.setParameter("username", user.getUsername());
 		List<User> users = q.list();
 		user = users.get(0);
 		user.setPassword(newPassword);
@@ -51,9 +36,9 @@ public class UserDAOImpl implements UserDAO {
 	public User updateEmail(User user,String newEmail) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		String queryString = "from User where user_id=:user_id";
+		String queryString = "from User where username=:username";
 		Query q = session.createQuery(queryString);
-		q.setParameter("user_id", user.getUser_id());
+		q.setParameter("username", user.getUsername());
 		List<User> users = q.list();
 		user = users.get(0);
 		user.setEmail(newEmail);
@@ -61,13 +46,17 @@ public class UserDAOImpl implements UserDAO {
 		tx.commit();
 		session.close();
 		return user;
-	}
+	}*/
 
-	public int deleteUser(User user) {
-		return 0;
+	public void deleteUser(User user) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(user);
+		tx.commit();
+		session.close();
 	}
-
-	public User setUpUser(User user) {
+	
+	public User insertUser(User user) {		
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(user);
@@ -75,5 +64,28 @@ public class UserDAOImpl implements UserDAO {
 		session.close();
 		return user;
 	}
+	
+	public User getUserDetails(String username) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		String queryString = "from User where username=:username";
+		Query q = session.createQuery(queryString);
+		q.setParameter("username", username);
+		List<User> users = q.list();
+		tx.commit();
+		session.close();
+		if(users.size()>0)
+			return users.get(0);
+		else 
+			return null;
+	}
 
+	public User updateUser(User user) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(user);
+		tx.commit();
+		session.close();
+		return user;
+	}
 }
