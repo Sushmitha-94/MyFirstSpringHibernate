@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
 
 	public User updateEmail(User user, String newEmail) {
 		user.setEmail(newEmail);
-		user = userDAO.updateUser(user);
-		return user;
+		User user1 = userDAO.updateUser(user);
+		return user1;
 	}
 
 	public void deleteUser(User user) {

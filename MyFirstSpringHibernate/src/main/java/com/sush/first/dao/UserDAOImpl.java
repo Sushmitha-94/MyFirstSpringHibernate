@@ -16,38 +16,6 @@ public class UserDAOImpl implements UserDAO {
 	 public UserDAOImpl(SessionFactory sessionFactory) {
 		 this.sessionFactory=sessionFactory;
 	 }
-/*	
-
-	public User updatePassword(User user,String newPassword) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		String queryString = "from User where username=:username";
-		Query q = session.createQuery(queryString);
-		q.setParameter("username", user.getUsername());
-		List<User> users = q.list();
-		user = users.get(0);
-		user.setPassword(newPassword);
-		session.update(user);
-		tx.commit();
-		session.close();
-		return user;
-	}
-
-	public User updateEmail(User user,String newEmail) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		String queryString = "from User where username=:username";
-		Query q = session.createQuery(queryString);
-		q.setParameter("username", user.getUsername());
-		List<User> users = q.list();
-		user = users.get(0);
-		user.setEmail(newEmail);
-		session.update(user);
-		tx.commit();
-		session.close();
-		return user;
-	}*/
-
 	public void deleteUser(User user) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();

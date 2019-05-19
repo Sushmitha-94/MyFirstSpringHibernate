@@ -29,6 +29,13 @@
 		<input type="text" name="email"/> 
 		
 		<input type="submit" value="submit"> 
+	</form><br><br>
+	Delete User:
+	<form action="deleteUser" method="POST"> 
+	Enter Password:
+		<input type="text" name="password"/>
+		<br>
+		<input type="submit" value="Delete User"> 
 	</form>
 </body>
 </html>
