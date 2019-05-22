@@ -20,7 +20,6 @@ import com.sush.first.model.User;
 import com.sush.first.service.UserService;
 
 @Controller
-@SessionAttributes("user")
 public class controllerClass {
 
 	@Autowired
