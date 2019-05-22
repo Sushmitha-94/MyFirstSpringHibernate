@@ -1,0 +1,61 @@
+Annotation:
+
+@Controller
+  - Scans for @Controller class and use it as front controller
+  
+@Autowired
+  - Injects the object created in the IOC container
+
+@RequestMapping
+  - Maps the request link with the value and method (=RequestMethod :GET, POST, PUT, DELETE)
+
+@RequestParam
+  - Parameter values from request
+
+@Controller
+  -During component scan, object is created for this class and place it in IOC container
+
+
+Classes, Interfaces, XML, JSP:
+
+- User.hbm.xml
+  * hibernate mapping with User class
+  
+- hibernate.cfg.xml
+  * hibernate configuration, maps User.hbm.xml
+  
+- first-servlet.xml
+  * Servlet xml 
+  * MVC annotation
+  * resources mapping
+  * component scan , scans the path and get the @Component, @Service, @Repository classes and created object for the in IOC container
+  * viewResolver
+  * bean creation
+  * data source bean, connects hibernate.cfg.xml
+  
+- spring-context.xml
+  * application context
+  
+- web.xml
+  * context param - connects application context
+  * servlet config - DispatcherServlet (first-servlet.xml)
+
+- User.java Class (Model)
+  * Bean class. Define the fields
+    
+- UserDAO.java Interface (DAO)
+  * Connects with Hibernate
+    
+- UserDAOImpl.java Class (DAO)
+  * implement CRUD operations
+    
+ - UserService.java Interface (Service)
+    * Connects controller with DAO
+    
+ - UserServiceImpl.java Class (Service)
+    * implement interface methods.
+    
+ - controllerClass.java Class (Controller)
+ 
+ - jsp(s) for View
+ 
